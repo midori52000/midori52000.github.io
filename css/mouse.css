@@ -1,0 +1,9 @@
+body {
+    cursor:url(../img/Normal_Select.ani),
+          default;
+  }
+  a,
+  img {
+    cursor:url(../img/Alternate_Select.ani),
+          default;
+  }
