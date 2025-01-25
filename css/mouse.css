@@ -1,0 +1,9 @@
+body {
+    cursor:url("../img/normal.cur"),
+          default;
+  }
+  a,
+  img {
+    cursor:url("../img/select.cur"),
+          default;
+  }
