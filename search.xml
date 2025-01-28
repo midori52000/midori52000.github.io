@@ -33,22 +33,22 @@
     
     
     <entry>
-      <title>Photography</title>
-      <link href="/Photography/index.html"/>
-      <url>/Photography/index.html</url>
+      <title></title>
+      <link href="/manifest.json"/>
+      <url>/manifest.json</url>
       
-        <content type="html"><![CDATA[<p>a new page</p>]]></content>
+        <content type="html"><![CDATA[{"name":"Midori`Blog","short_name":"Midori`Blog","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/siteicon/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/siteicon/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/siteicon/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/siteicon/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/siteicon/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/siteicon/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/siteicon/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title></title>
-      <link href="/manifest.json"/>
-      <url>/manifest.json</url>
+      <title>Photography</title>
+      <link href="/Photography/index.html"/>
+      <url>/Photography/index.html</url>
       
-        <content type="html"><![CDATA[{"name":"Midori`Blog","short_name":"Midori`Blog","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/siteicon/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/siteicon/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/siteicon/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/siteicon/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/siteicon/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/siteicon/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/siteicon/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
+        <content type="html"><![CDATA[<h1 id="2024年度照片-虽然是在2025年1月拍的"><a href="#2024年度照片-虽然是在2025年1月拍的" class="headerlink" title="2024年度照片(虽然是在2025年1月拍的"></a>2024年度照片(虽然是在2025年1月拍的</h1><h3 id="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲"><a href="#虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲" class="headerlink" title="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲"></a>虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲</h3><p>响啊！很响啊！(指火箭的声音)</p><p>2025.1.19</p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMZND.jpg"></p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMPj1.jpg"></p>]]></content>
       
     </entry>
     
