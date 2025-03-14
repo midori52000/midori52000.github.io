@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>openCV学习日记-Day2-基本运算与卷积</title>
+      <link href="/posts/3f4d80ea.html"/>
+      <url>/posts/3f4d80ea.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="任务一：理解图像的算术运算"><a href="#任务一：理解图像的算术运算" class="headerlink" title="任务一：理解图像的算术运算"></a>任务一：理解图像的算术运算</h2><h3 id="1-图像加法实现图像降噪"><a href="#1-图像加法实现图像降噪" class="headerlink" title="1.图像加法实现图像降噪"></a>1.图像加法实现图像降噪</h3><p>用相机连拍产生的噪声为互不相干的加性噪声，且均值为0。对多幅连拍图像相加取平均，可以消除噪声。</p><p><a href="https://imgse.com/i/pEa3yod"><img src="https://s21.ax1x.com/2025/03/14/pEa3yod.png" alt="pEa3yod.png"></a></p><center> 图(1)ISO32000下拍出的照片 </center><p><a href="https://imgse.com/i/pEa3BLD"><img src="https://s21.ax1x.com/2025/03/14/pEa3BLD.png" alt="pEa3BLD.png"></a>  原照片的ISO达到了32000，放大后可以看到产生了很可观的噪点。</p><h4 id="Python代码实现："><a href="#Python代码实现：" class="headerlink" title="Python代码实现："></a>Python代码实现：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 加载图像</span></span><br><span class="line">image1 = cv2.imread(<span class="string">r&#x27;assignment2\add\noise (1).JPG&#x27;</span>)  <span class="comment"># 使用相对路径加载图像</span></span><br><span class="line"><span class="keyword">if</span> image1 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;图像加载失败，请检查文件路径。&quot;</span>)</span><br><span class="line">exit()</span><br><span class="line">（此处省略<span class="number">9</span>次图像载入）</span><br><span class="line">noise = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10]   <span class="comment"># 创建图像列表</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 灰度化处理</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    noise[i] = cv2.cvtColor(noise[i], cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 图像降低亮度防止相加后过曝</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    noise[i] = cv2.divide(noise[i], <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 图像相加降噪</span></span><br><span class="line">add_img1 = cv2.add(noise[<span class="number">0</span>], noise[<span class="number">1</span>])</span><br><span class="line">add_img2 = cv2.add(noise[<span class="number">2</span>], noise[<span class="number">3</span>])</span><br><span class="line">add_img3 = cv2.add(noise[<span class="number">4</span>], noise[<span class="number">5</span>])</span><br><span class="line">add_img4 = cv2.add(noise[<span class="number">6</span>], noise[<span class="number">7</span>])</span><br><span class="line">add_img5 = cv2.add(noise[<span class="number">8</span>], noise[<span class="number">9</span>])</span><br><span class="line">Add_img1 = cv2.add(add_img1, add_img2)</span><br><span class="line">Add_img2 = cv2.add(add_img3, add_img4)</span><br><span class="line">Add_img3 = cv2.add(Add_img1, Add_img2)</span><br><span class="line">Add_img = cv2.add(Add_img3, add_img5)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;Source Image&#x27;</span>, cv2.multiply(noise[<span class="number">0</span>], <span class="number">10</span>))</span><br><span class="line">cv2.imshow(<span class="string">&#x27;Add Image&#x27;</span>, Add_img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待用户按键后关闭所有窗口</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows() </span><br></pre></td></tr></table></figure><center class="half">    <img src="https://s21.ax1x.com/2025/03/14/pEa3sdH.png" width="500" />      <center> 图(2) 原图 </center></center><center class="half">    <img src="https://s21.ax1x.com/2025/03/14/pEa3ree.png" width="500" />    <center> 图(3) 相加后的图像 </center></center><br><br><center class="half">    <img src="https://s21.ax1x.com/2025/03/14/pEa30sO.png"/>    <center> 图(4)  原图局部放大 </center></center><center class="half">    <img src="https://s21.ax1x.com/2025/03/14/pEa3wQK.png"/>    <center> 图(5)  相加后图片局部放大 </center></center><br><br><p>将图像放大后可以清楚地发现照片的噪点被降低了,</p><h4 id="每一根毛都看得清清楚楚-bushi"><a href="#每一根毛都看得清清楚楚-bushi" class="headerlink" title="每一根毛都看得清清楚楚(bushi"></a>每一根毛都看得清清楚楚(bushi</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> openCV学习日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>openCV学习日记-Day1-基本操作</title>
       <link href="/posts/45686756.html"/>
       <url>/posts/45686756.html</url>
@@ -78,22 +97,22 @@
     
     
     <entry>
-      <title>Photography</title>
-      <link href="/Photography/index.html"/>
-      <url>/Photography/index.html</url>
+      <title></title>
+      <link href="/manifest.json"/>
+      <url>/manifest.json</url>
       
-        <content type="html"><![CDATA[<h1 id="2024年度照片-虽然是在2025年1月拍的"><a href="#2024年度照片-虽然是在2025年1月拍的" class="headerlink" title="2024年度照片(虽然是在2025年1月拍的"></a>2024年度照片(虽然是在2025年1月拍的</h1><h3 id="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲"><a href="#虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲" class="headerlink" title="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲"></a>虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲</h3><p>响啊！很响啊！(指火箭的声音)</p><p>2025.1.19</p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMZND.jpg"></p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMPj1.jpg"></p>]]></content>
+        <content type="html"><![CDATA[{"name":"Midori`Blog","short_name":"Midori`Blog","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/siteicon/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/siteicon/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/siteicon/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/siteicon/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/siteicon/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/siteicon/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/siteicon/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title></title>
-      <link href="/manifest.json"/>
-      <url>/manifest.json</url>
+      <title>Photography</title>
+      <link href="/Photography/index.html"/>
+      <url>/Photography/index.html</url>
       
-        <content type="html"><![CDATA[{"name":"Midori`Blog","short_name":"Midori`Blog","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/siteicon/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/siteicon/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/siteicon/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/siteicon/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/siteicon/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/siteicon/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/siteicon/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
+        <content type="html"><![CDATA[<h1 id="2024年度照片-虽然是在2025年1月拍的"><a href="#2024年度照片-虽然是在2025年1月拍的" class="headerlink" title="2024年度照片(虽然是在2025年1月拍的"></a>2024年度照片(虽然是在2025年1月拍的</h1><h3 id="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲"><a href="#虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧-悲" class="headerlink" title="虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲"></a>虽然不是很成功的一次拍摄，距离太远，雾太浓，锐化拉满了导致出现了奇怪的白边，搞了半天没弄得掉，干脆留着吧(悲</h3><p>响啊！很响啊！(指火箭的声音)</p><p>2025.1.19</p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMZND.jpg"></p><p><img src="https://s21.ax1x.com/2025/01/28/pEVMPj1.jpg"></p>]]></content>
       
     </entry>
     
